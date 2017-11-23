@@ -47,7 +47,7 @@ class AnkoSQLiteManager(var ctx: Context = MainApplication.instance) {
         return isDelete
     }
 
-    fun selectAllUsers() {
+    fun selectAllUsers() : ArrayList<User> {
         var listUsers = ArrayList<User>()
         ctx.database.use {
             select(UserTable.TABLE_NAME)
@@ -63,11 +63,7 @@ class AnkoSQLiteManager(var ctx: Context = MainApplication.instance) {
                         }
                     })
         }
-        listUsers.forEach {
-            println("user_id: ${it.user_id}")
-            println("name: ${it.name}")
-            println("email: ${it.email}")
-        }
+        return listUsers
     }
 
     fun insertUser(user: User) : Boolean = ctx.database.use {

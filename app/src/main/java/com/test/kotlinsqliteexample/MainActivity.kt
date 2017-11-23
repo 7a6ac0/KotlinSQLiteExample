@@ -20,9 +20,12 @@ class MainActivity : AppCompatActivity() {
             AnkoSQLiteManager().insertUser(user2)
             AnkoSQLiteManager().insertUser(user3)
             println("------ selectAllUsers ------")
-            AnkoSQLiteManager().selectAllUsers()
+            val userList = AnkoSQLiteManager().selectAllUsers()
+            userList.forEach {
+                println("ID: ${it.user_id}\nNAME: ${it.name}\nEMAIL: ${it.email}")
+            }
             println("------ selectUserByID 2 ------")
-            val getUser: User = AnkoSQLiteManager().selectUserByID("2")
+            val getUser: User = AnkoSQLiteManager().selectUserByID(user2.user_id!!)
             println(getUser.toString())
             println("------ delete User3 ------")
             AnkoSQLiteManager().deleteUser(user3)
